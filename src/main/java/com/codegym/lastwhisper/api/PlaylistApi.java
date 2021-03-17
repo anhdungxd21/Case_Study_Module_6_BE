@@ -3,6 +3,7 @@ import com.codegym.lastwhisper.model.Playlist;
 import com.codegym.lastwhisper.service.playlist.IPlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,13 @@ public class PlaylistApi {
     // list playlist
     @GetMapping
     public ResponseEntity<Iterable<Playlist>> getAllPlaylist(@RequestParam("page") Optional<String> optionalPage,
-                                                             @RequestParam("size") Optional<String> optionalSize){
+                                                             @RequestParam("size") Optional<String> optionalSize,
+                                                             @RequestParam("sort") Optional<String> sort){
         Integer page=0;
         Integer size=2;
         if (optionalPage.isPresent()) page=Integer.parseInt(optionalPage.get());
         if (optionalSize.isPresent()) size=Integer.parseInt(optionalSize.get());
-        Pageable pageable = (Pageable) PageRequest.of(page,size);
+        Pageable pageable =  PageRequest.of(page,size, Sort.by("namePlaylist"));
         return new ResponseEntity<>(playlistService.findAll(pageable), HttpStatus.OK);
     }
     // create playlist
