@@ -5,9 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Data
@@ -18,22 +15,10 @@ public class Song extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotEmpty
     private String name;
-
-    @NotNull
+    private String description;
     private String link;
-
-    private String lyric;
-
-    @NotNull
+    private String avatar;
     private Long userId;
-
-    private Long typeId;
-
-    @NotNull
     private Long singerId;
-
-
 }
