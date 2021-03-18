@@ -14,10 +14,7 @@ import javax.persistence.GenerationType;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-<<<<<<< HEAD
 @Table
-=======
->>>>>>> f0e4d29f4187d35d7b4a81522684d992f5f447f3
 public class CommentSinger extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
