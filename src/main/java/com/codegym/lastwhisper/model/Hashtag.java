@@ -15,6 +15,6 @@ import javax.persistence.*;
 public class Hashtag extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idHashTag;
+    private Long   id;
     private String nameHashtag;
 }

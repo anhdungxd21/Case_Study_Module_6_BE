@@ -16,10 +16,10 @@ import java.io.File;
 public class Playlist extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long   id;
     private String namePlaylist;
     private String descriptionPlaylist;
     private String avatar;
-    private Long idUser;
+    private Long   idUser;
     private String typePlaylist;
 }

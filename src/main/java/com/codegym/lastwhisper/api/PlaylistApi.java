@@ -67,7 +67,7 @@ public class PlaylistApi {
     @GetMapping("/search")
     public ResponseEntity<Iterable<Playlist>> getAllEmployeeByName(@RequestParam("name")String nameSearch){
         Integer page = 0;
-        Integer size = 2;
+        Integer size = 10;
         Pageable pageable = PageRequest.of(page,size);
         return new ResponseEntity<>(playlistService.findAllByName(nameSearch,pageable),HttpStatus.OK);
     }

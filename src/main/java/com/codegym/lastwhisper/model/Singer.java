@@ -14,11 +14,9 @@ import javax.persistence.*;
 public class Singer extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSinger;
+    private Long   id;
     private String fullName;
     private String gender;
     private String birthday;
     private String description;
-    private String orchestra;
-    private String hitMusic;
 }
