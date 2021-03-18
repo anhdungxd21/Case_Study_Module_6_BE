@@ -1,6 +1,9 @@
 package com.codegym.lastwhisper.controller;
 
+import com.codegym.lastwhisper.dto.ConverterDTO;
+import com.codegym.lastwhisper.dto.SongDTO;
 import com.codegym.lastwhisper.model.Response;
+import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.service.ISongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +16,9 @@ public class SongController {
     @Autowired
     private ISongService songService;
 
+    @Autowired
+    private ConverterDTO converter;
+
     @GetMapping
     public Response getAllSong(){
         Response response = new Response();
@@ -23,9 +29,12 @@ public class SongController {
     }
 
     @PostMapping
-    public Response postSong(){
+    public Response postSong(@RequestBody SongDTO songDTO){
+        Song song = converter.songConverter(songDTO);
         Response response = new Response();
-
+        response.setStatus(201);
+        response.setMessage("Create success");
+        response.setData(songService.save(song));
         return response;
     }
 }

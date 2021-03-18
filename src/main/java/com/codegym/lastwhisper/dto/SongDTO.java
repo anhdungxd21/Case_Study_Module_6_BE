@@ -4,10 +4,11 @@ import lombok.Data;
 
 @Data
 public class SongDTO {
+    private Long id;
     private String name;
     private String link;
     private String lyric;
-    private String userId;
-    private String typeId;
+    private Long userId;
+    private Long typeId;
     private Long singerId;
 }

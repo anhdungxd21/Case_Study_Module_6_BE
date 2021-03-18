@@ -22,6 +22,10 @@ public abstract class BaseEntity {
     @CreatedBy
     private String updateBy;
 
+    @JsonIgnore
+    @CreatedBy
+    private ZonedDateTime updateDate;
+
 //    @JsonIgnore
 //    private String version;
 }
