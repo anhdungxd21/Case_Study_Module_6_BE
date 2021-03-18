@@ -16,14 +16,9 @@ import javax.persistence.GenerationType;
 public class Singer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSinger;
-    private String fullName;
+    private Long id;
+    private String name;
     private String gender;
     private String birthday;
     private String description;
-    private String orchestra;
-    private String hitMusic;
-
-
-
 }
