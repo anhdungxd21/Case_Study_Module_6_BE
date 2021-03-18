@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class User extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUser;
+    private Long id;
     private String fullName;
     private String username;
     private String password;
