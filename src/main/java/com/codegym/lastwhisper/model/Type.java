@@ -18,8 +18,8 @@ import javax.persistence.GenerationType;
 public class Type extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idType;
-    private String nameType;
+    private Long id;
+    private String name;
 
 
 }

@@ -17,9 +17,9 @@ import javax.persistence.Id;
 public class ULike extends  BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idULike;
-    private Long idUser;
-    private Long idType;
+    private Long id;
+    private Long userId;
+    private Long typeId;
 
 
 

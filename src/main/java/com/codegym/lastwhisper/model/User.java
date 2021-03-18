@@ -18,8 +18,6 @@ public class User extends BaseEntity{
     private Long id;
     private String fullName;
     private String username;
-
-
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
