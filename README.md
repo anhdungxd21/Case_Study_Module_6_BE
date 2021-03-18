@@ -9,7 +9,7 @@
         {
             "id": 1,
             "name": "Dương",
-            "link": "https://firebasestorage.googleapis.com/v0/b/lastwhisper-e6ba5.appspot.com/o/Sound%2F1616033952319?alt=media&token=abae3b48-16d0-4e33-ba1c-734e93580502",
+            "link": "link",
             "lyric": "unknown",
             "userId": 1,
             "typeId": 1,
@@ -18,7 +18,7 @@
         {
             "id": 2,
             "name": "Tú",
-            "link": "https://firebasestorage.googleapis.com/v0/b/lastwhisper-e6ba5.appspot.com/o/Sound%2F1616033952319?alt=media&token=abae3b48-16d0-4e33-ba1c-734e93580502",
+            "link": "link",
             "lyric": "unknown",
             "userId": 1,
             "typeId": 1,
