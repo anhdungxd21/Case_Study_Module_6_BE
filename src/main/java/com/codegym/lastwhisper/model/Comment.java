@@ -16,8 +16,8 @@ import javax.persistence.*;
 public class Comment extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idComment;
+    private Long id;
     private String content;
-    private Long idUser;
-    private Long idType;
+    private Long userId;
+    private Long typeId;
 }

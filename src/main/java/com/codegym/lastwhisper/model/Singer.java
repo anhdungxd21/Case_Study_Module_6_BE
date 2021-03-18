@@ -19,6 +19,4 @@ public class Singer extends BaseEntity {
     private String gender;
     private String birthday;
     private String description;
-    private String orchestra;
-    private String hitMusic;
 }

@@ -17,9 +17,8 @@ public class Playlist extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String namePlaylist;
-    private String descriptionPlaylist;
+    private String name;
+    private String description;
     private String avatar;
-    private Long idUser;
-    private String typePlaylist;
+    private Long userId;
 }
