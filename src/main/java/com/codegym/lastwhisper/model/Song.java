@@ -17,7 +17,7 @@ public class Song extends BaseEntity{
     private Long id;
     private String nameMusic;
     private String description;
-    private String mp3;
+    private String link;
     private String avatar;
     private Long idUser;
     private String typeMusic;

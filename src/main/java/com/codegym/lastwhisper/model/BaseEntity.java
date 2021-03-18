@@ -18,6 +18,6 @@ public abstract class BaseEntity {
     @CreatedBy
     private String updateBy;
 
-    @JsonIgnore
-    private String version;
+//    @JsonIgnore
+//    private String version;
 }
