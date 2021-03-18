@@ -1,4 +1,4 @@
-package com.codegym.lastwhisper.service.impl;
+package com.codegym.lastwhisper.service.song;
 
 import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.repository.SongRepository;

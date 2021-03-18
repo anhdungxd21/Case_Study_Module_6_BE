@@ -21,5 +21,4 @@ public class Song extends BaseEntity{
     private Long userId;
     private Long typeId;
     private Long singerId;
-
 }
