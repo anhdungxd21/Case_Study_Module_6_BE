@@ -5,10 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
+import javax.persistence.Id;
 
-
-import javax.persistence.*;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 @Entity
 @Data
 @NoArgsConstructor
@@ -16,8 +17,10 @@ import javax.persistence.*;
 public class Comment extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idComment;
     private String content;
-    private Long userId;
-    private Long typeId;
+    private Long idUser;
+    private Long idType;
+
+
 }
