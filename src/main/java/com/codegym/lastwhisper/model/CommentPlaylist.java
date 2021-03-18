@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-public class CommentSinger {
+public class CommentPlaylist extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,4 +19,6 @@ public class CommentSinger {
     private String content;
     @ManyToOne
     private User user;
+    @ManyToOne
+    private Playlist playlist;
 }
