@@ -12,7 +12,16 @@ public class converter {
             song.setName("Unknown");
         }
 
-//        if(songDTO.)
+        if(songDTO.getLink()!=null){
+            song.setLink(songDTO.getLink());
+        } else {
+            return null;
+        }
+
+        if(songDTO.getLyric()!=null){
+            song.setLyric(songDTO.getLyric());
+        }
+
         return song;
     }
 }
