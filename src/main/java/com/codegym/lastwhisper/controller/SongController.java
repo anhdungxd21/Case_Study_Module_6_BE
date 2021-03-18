@@ -7,7 +7,12 @@ import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.service.ISongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("songs")
@@ -18,6 +23,16 @@ public class SongController {
 
     @Autowired
     private ConverterDTO converter;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Song> getSongById(@PathParam("id")Long id){
+        Optional<Song> optionalSong =  songService.findById(id);
+        if(optionalSong.isPresent()){
+            return new ResponseEntity<Song>(optionalSong.get(), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<Song>(HttpStatus.NOT_FOUND);
+        }
+    }
 
     @GetMapping
     public Response getAllSong(){
