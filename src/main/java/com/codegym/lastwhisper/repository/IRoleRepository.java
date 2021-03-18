@@ -1,6 +1,7 @@
-package com.codegym.demo.repository;
+package com.codegym.lastwhisper.repository;
 
-import com.codegym.demo.model.Role;
+
+import com.codegym.lastwhisper.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

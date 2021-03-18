@@ -1,4 +1,4 @@
-package com.codegym.demo.configuration.security;
+package com.codegym.lastwhisper.configuration.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

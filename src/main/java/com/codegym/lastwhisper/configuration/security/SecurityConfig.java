@@ -1,10 +1,11 @@
-package com.codegym.demo.configuration.security;
+package com.codegym.lastwhisper.configuration.security;
 
-import com.codegym.demo.configuration.custom.CustomAccessDeniedHandler;
-import com.codegym.demo.configuration.custom.RestAuthenticationEntryPoint;
-import com.codegym.demo.configuration.filter.JwtAuthenticationFilter;
-import com.codegym.demo.model.User;
-import com.codegym.demo.service.user.IUserService;
+
+import com.codegym.lastwhisper.configuration.custom.CustomAccessDeniedHandler;
+import com.codegym.lastwhisper.configuration.custom.RestAuthenticationEntryPoint;
+import com.codegym.lastwhisper.configuration.filter.JwtAuthenticationFilter;
+import com.codegym.lastwhisper.model.User;
+import com.codegym.lastwhisper.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         List<User> users = (List<User>) userService.findAll();
         if(users.isEmpty()){
             User user = new User();
-            user.setUsername("admin");
+            user.setFullName("admin");
             user.setPassword(passwordEncoder.encode("admin"));
             userService.save(user);
         }
@@ -79,7 +80,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().ignoringAntMatchers("/**");
         http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
         http.authorizeRequests()
-                .antMatchers("/", "/login").permitAll()
+                .antMatchers("/", "/login","/register").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable();
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)

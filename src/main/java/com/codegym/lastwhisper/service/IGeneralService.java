@@ -1,4 +1,4 @@
-package com.codegym.demo.service;
+package com.codegym.lastwhisper.service;
 
 import java.util.Optional;
 

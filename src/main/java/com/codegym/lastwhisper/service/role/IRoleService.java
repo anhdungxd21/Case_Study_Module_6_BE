@@ -1,7 +1,8 @@
-package com.codegym.demo.service.role;
+package com.codegym.lastwhisper.service.role;
 
-import com.codegym.demo.model.Role;
-import com.codegym.demo.service.IGeneralService;
+
+import com.codegym.lastwhisper.model.Role;
+import com.codegym.lastwhisper.service.IGeneralService;
 
 public interface IRoleService extends IGeneralService<Role> {
 }

@@ -1,8 +1,9 @@
-package com.codegym.demo.service.user;
+package com.codegym.lastwhisper.service.user;
 
-import com.codegym.demo.model.User;
-import com.codegym.demo.model.UserPrinciple;
-import com.codegym.demo.repository.IUserRepository;
+
+import com.codegym.lastwhisper.model.User;
+import com.codegym.lastwhisper.model.UserPrinciple;
+import com.codegym.lastwhisper.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,14 +36,16 @@ public class UserService implements IUserService {
         userRepository.deleteById(id);
     }
 
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByFullName(username);
         return UserPrinciple.build(user);
     }
 
     @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User findByFullName(String username) {
+        return userRepository.findByFullName(username);
     }
 }

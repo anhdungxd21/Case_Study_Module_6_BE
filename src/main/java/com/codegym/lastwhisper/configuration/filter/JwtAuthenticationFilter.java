@@ -1,7 +1,8 @@
-package com.codegym.demo.configuration.filter;
+package com.codegym.lastwhisper.configuration.filter;
 
-import com.codegym.demo.service.JwtService;
-import com.codegym.demo.service.user.IUserService;
+
+import com.codegym.lastwhisper.service.JwtService;
+import com.codegym.lastwhisper.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

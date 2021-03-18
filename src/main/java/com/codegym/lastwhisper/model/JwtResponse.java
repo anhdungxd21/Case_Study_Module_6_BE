@@ -1,4 +1,4 @@
-package com.codegym.demo.model;
+package com.codegym.lastwhisper.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

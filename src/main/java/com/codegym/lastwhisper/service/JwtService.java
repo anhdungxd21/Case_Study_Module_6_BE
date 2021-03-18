@@ -1,13 +1,14 @@
-package com.codegym.demo.service;
+package com.codegym.lastwhisper.service;
 
-import com.codegym.demo.model.UserPrinciple;
+
+import com.codegym.lastwhisper.model.UserPrinciple;
 import io.jsonwebtoken.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 
 @Component
@@ -16,6 +17,7 @@ public class JwtService {
     private static final String SECRET_KEY = "Quan";
     private static final Long EXPIRE_TIME = 100000000L;
     private static Logger logger = LoggerFactory.getLogger(JwtService.class);
+
 
     public String generateAccessToken(Authentication authentication) {
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();

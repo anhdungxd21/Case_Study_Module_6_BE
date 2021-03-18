@@ -1,11 +1,13 @@
-package com.codegym.demo.service.role;
+package com.codegym.lastwhisper.service.role;
 
-import com.codegym.demo.model.Role;
-import com.codegym.demo.repository.IRoleRepository;
+
+import com.codegym.lastwhisper.model.Role;
+import com.codegym.lastwhisper.repository.IRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 
 @Service
 public class RoleService implements IRoleService {

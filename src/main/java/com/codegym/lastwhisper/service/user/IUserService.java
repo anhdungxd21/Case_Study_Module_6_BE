@@ -1,9 +1,10 @@
-package com.codegym.demo.service.user;
+package com.codegym.lastwhisper.service.user;
 
-import com.codegym.demo.model.User;
-import com.codegym.demo.service.IGeneralService;
+
+import com.codegym.lastwhisper.model.User;
+import com.codegym.lastwhisper.service.IGeneralService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface IUserService extends IGeneralService<User>, UserDetailsService {
-    User findByUsername(String username);
+    User findByFullName(String username);
 }

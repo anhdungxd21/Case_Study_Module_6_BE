@@ -1,4 +1,4 @@
-package com.codegym.demo.configuration.custom;
+package com.codegym.lastwhisper.configuration.custom;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

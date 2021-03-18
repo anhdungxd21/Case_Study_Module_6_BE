@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,4 +20,6 @@ public class Type extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idType;
     private String nameType;
+
+
 }

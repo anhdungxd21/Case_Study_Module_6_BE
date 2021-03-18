@@ -3,7 +3,7 @@ package com.codegym.lastwhisper.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,4 +23,6 @@ public class Playlist extends BaseEntity{
     private String avatar;
     private Long idUser;
     private String typePlaylist;
+
+
 }
