@@ -16,9 +16,18 @@ public class Song extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+<<<<<<< HEAD
     private String description;
     private String link;
     private String avatar;
     private Long userId;
     private Long singerId;
+=======
+    private String link;
+    private String lyric;
+    private Long userId;
+    private Long typeId;
+    private Long singerId;
+
+>>>>>>> f0e4d29f4187d35d7b4a81522684d992f5f447f3
 }
