@@ -51,7 +51,7 @@
 # Playlist API
 
 #### Playlist model
-   {
+    {
     "content": [
         {
             "id": 2,
@@ -93,8 +93,8 @@
         "empty": false
     },
     "empty": false
-  }
+    }
 
 ### Get all playlists music for customer and user
-Get:  http://localhost:8080/playlists
+```Get:  http://localhost:8080/playlists```
 
