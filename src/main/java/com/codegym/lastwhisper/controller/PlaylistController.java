@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 import java.util.Optional;
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/playlist")
+@RequestMapping("/playlists")
 public class PlaylistController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class PlaylistController {
         Integer size = 2;
         if (optionalPage.isPresent()) page = Integer.parseInt(optionalPage.get());
         if (optionalSize.isPresent()) size = Integer.parseInt(optionalSize.get());
-        Pageable pageable = PageRequest.of(page, size, Sort.by("namePlaylist"));
+        Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
         return new ResponseEntity<>(playlistService.findAll(pageable), HttpStatus.OK);
     }
 
@@ -71,7 +71,7 @@ public class PlaylistController {
 
     // sreach by name
     @GetMapping("/search")
-    public ResponseEntity<Iterable<Playlist>> getAllEmployeeByName(@RequestParam("name") String nameSearch) {
+    public ResponseEntity<Iterable<Playlist>> getAllPlaylistByName(@RequestParam("name") String nameSearch) {
         Integer page = 0;
         Integer size = 10;
         Pageable pageable = PageRequest.of(page, size);
@@ -79,4 +79,11 @@ public class PlaylistController {
     }
 
     // playlist by playlist
+    @GetMapping("/user/{id}")
+    public ResponseEntity<Iterable<Playlist>> getAllPlaylistByUser(@RequestParam Long id){
+        Integer page = 0;
+        Integer size =10;
+        Pageable pageable =PageRequest.of(page, size);
+        return new ResponseEntity<>(playlistService.findAllByUserId(id,pageable), HttpStatus.OK);
+    }
 }
