@@ -3,19 +3,21 @@ package com.codegym.lastwhisper.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.persistence.Id;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
-public class Singer extends BaseEntity {
+public class Singer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSinger;
-    private String fullName;
+    private Long id;
+    private String name;
     private String gender;
     private String birthday;
     private String description;

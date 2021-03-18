@@ -1,10 +1,14 @@
 package com.codegym.lastwhisper.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 
+import javax.persistence.MappedSuperclass;
 import java.time.ZonedDateTime;
 
+@MappedSuperclass
+@Data
 public abstract class BaseEntity {
     @JsonIgnore
     @CreatedBy
@@ -17,6 +21,10 @@ public abstract class BaseEntity {
     @JsonIgnore
     @CreatedBy
     private String updateBy;
+
+    @JsonIgnore
+    @CreatedBy
+    private ZonedDateTime updateDate;
 
 //    @JsonIgnore
 //    private String version;

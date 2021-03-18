@@ -17,15 +17,15 @@ import java.util.Optional;
 @RestController
 @CrossOrigin("*")
 public class CommentPlaylistController {
-    @Autowired
-    private PlayListService playListService;
+//    @Autowired
+//    private PlayListService playListService;
 
     @Autowired
     private ICommentPlaylistService commentPlaylistServices;
 
     @GetMapping("/commentPlaylist/{idPlaylist}")
     public ResponseEntity<Iterable<CommentPlaylist>> getCommentByIdPlaylist(@PathVariable Long idPlaylist){
-        Optional<Playlist> playlist = playListService.findById(idPlaylist);
+//        Optional<Playlist> playlist = playListService.findById(idPlaylist);
         Iterable<CommentPlaylist> listCommentPlaylist = commentPlaylistServices.getCommentPlaylistsByPlaylist(playlist.get());
         return new ResponseEntity<>(listCommentPlaylist, HttpStatus.OK);
 

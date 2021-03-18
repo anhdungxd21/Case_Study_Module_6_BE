@@ -4,7 +4,10 @@ import com.codegym.lastwhisper.model.CommentSong;
 import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.model.User;
 import com.codegym.lastwhisper.repository.CommentSongRepository;
+import com.codegym.lastwhisper.service.ISongService;
 import com.codegym.lastwhisper.service.comment.commentSong.ICommentSongService;
+import com.codegym.lastwhisper.service.impl.SongService;
+import com.codegym.lastwhisper.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +24,11 @@ public class CommentSongController {
     @Autowired
     private ICommentSongService commentSongService;
 
-//    @Autowired
-//    private SongService songService;
-//    @Autowired
-//    private UserService userService;
+    @Autowired
+    private ISongService songService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/commentSong/{songID}")
     public ResponseEntity<Iterable<CommentSong>> getCommentByIdSong(@PathVariable Long songID){
@@ -42,7 +46,7 @@ public class CommentSongController {
 
         commentSong.setCreationTime(today);
         Song song = songService.findById(songID);
-        User user = userService.findByUsername(username);
+        User user = userService.findByFullName(username);
         commentSong.setUser(user);
         commentSong.setSong(song);
         return new ResponseEntity<>(commentSongService.save(commentSong),HttpStatus.CREATED);
