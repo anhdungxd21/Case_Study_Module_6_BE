@@ -1,6 +1,7 @@
 package com.codegym.lastwhisper.dto;
 
 import com.codegym.lastwhisper.model.Singer;
+import com.codegym.lastwhisper.model.Type;
 import com.codegym.lastwhisper.model.User;
 import lombok.Data;
 
@@ -10,6 +11,7 @@ public class SongJsonDto {
     private String name;
     private String link;
     private String lyric;
+    private Type type;
     private UserDTO user;
     private Singer singer;
 }

@@ -3,8 +3,10 @@ package com.codegym.lastwhisper.dto;
 import com.codegym.lastwhisper.model.Singer;
 import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.model.User;
+import com.codegym.lastwhisper.model.Type;
 import com.codegym.lastwhisper.service.ISongService;
 import com.codegym.lastwhisper.service.singer.ISingerService;
+import com.codegym.lastwhisper.service.type.ITypeService;
 import com.codegym.lastwhisper.service.user.IUserService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,11 @@ public class ConverterDTO {
 
     @Autowired
     private ISingerService singerService;
+
+    @Autowired
+    private ITypeService typeService;
+
+
     public ZonedDateTime getTime(){
         ZoneId zoneHCM = ZoneId.of("Asia/Ho_Chi_Minh");
 
@@ -96,7 +103,16 @@ public class ConverterDTO {
         songJsonDto.setName(song.getName());
         songJsonDto.setLink(song.getLink());
         songJsonDto.setLyric(song.getLyric());
+
+        Optional<Type> type = typeService.findById(song.getTypeId());
+        if(type.isPresent()){
+            songJsonDto.setType(type.get());
+        }else {
+            songJsonDto.setType(null);
+        }
+
         songJsonDto.setUser(getUserDtoById(song.getUserId()));
+
         Optional<Singer> singer = singerService.findById(song.getSingerId());
         if(singer.isPresent()) {
             songJsonDto.setSinger(singer.get());

@@ -13,7 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Stack;
 
 @RestController
 @RequestMapping("songs")
@@ -24,6 +27,27 @@ public class SongController {
 
     @Autowired
     private ConverterDTO converter;
+
+
+
+    @GetMapping
+    public Response getAllSong(){
+        Response response = new Response();
+        List getAllSong = (List) songService.findAll();
+        Stack reverseSong = new Stack();
+        ArrayList<SongJsonDto> sendList = new ArrayList();
+        for(int i = 0; i < (getAllSong.size()<10?getAllSong.size():10); i++){
+            reverseSong.push(getAllSong.get(i));
+        }
+        for (int i = 0; i < reverseSong.size(); i++){
+            Song song = (Song) reverseSong.pop();
+            sendList.add(converter.converterSongToSend(song));
+        }
+        response.setStatus(200);
+        response.setMessage("Success");
+        response.setData(sendList);
+        return response;
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity getSongById(@PathVariable("id")Long id){
@@ -36,22 +60,38 @@ public class SongController {
         }
     }
 
-    @GetMapping
-    public Response getAllSong(){
-        Response response = new Response();
-        response.setStatus(200);
-        response.setMessage("Success");
-        response.setData(songService.findAll());
-        return response;
-    }
-
     @PostMapping
     public Response postSong(@RequestBody SongDTO songDTO){
         Song song = converter.songConverter(songDTO);
         Response response = new Response();
-        response.setStatus(201);
+        response.setStatus(202);
         response.setMessage("Create success");
         response.setData(songService.save(song));
         return response;
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity putSong(@PathVariable("id")Long id,
+                                  @RequestBody SongDTO songDTO){
+        Optional<Song> optionalSong = songService.findById(id);
+        if(optionalSong.isPresent()){
+            Song song = converter.songConverter(songDTO);
+            songService.save(song);
+            return new ResponseEntity(songDTO,HttpStatus.ACCEPTED);
+        }else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteSong(@PathVariable Long id){
+        Optional<Song> songOptional = songService.findById(id);
+        if(songOptional.isPresent()){
+            songService.remove(id);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } else  {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 }
