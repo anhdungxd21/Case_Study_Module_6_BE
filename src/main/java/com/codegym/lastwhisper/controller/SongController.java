@@ -25,7 +25,7 @@ public class SongController {
     private ConverterDTO converter;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Song> getSongById(@PathParam("id")Long id){
+    public ResponseEntity<Song> getSongById(@PathVariable("id")Long id){
         Optional<Song> optionalSong =  songService.findById(id);
         if(optionalSong.isPresent()){
             return new ResponseEntity<Song>(optionalSong.get(), HttpStatus.OK);

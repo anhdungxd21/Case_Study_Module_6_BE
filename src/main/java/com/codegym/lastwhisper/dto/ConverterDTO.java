@@ -2,6 +2,7 @@ package com.codegym.lastwhisper.dto;
 
 import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.service.ISongService;
+import com.codegym.lastwhisper.service.user.IUserService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,11 @@ public class ConverterDTO {
 
     @Autowired
     private ISongService songService;
+
+    @Autowired
+    private IUserService userService;
+
+    @Autowired
 
     public ZonedDateTime getTime(){
         ZoneId zoneHCM = ZoneId.of("Asia/Ho_Chi_Minh");
@@ -81,5 +87,12 @@ public class ConverterDTO {
         }
 
         return song;
+    }
+
+    public SongJsonDto converterSongToSend(Song song){
+        SongJsonDto songJsonDto = new SongJsonDto();
+
+
+        return songJsonDto;
     }
 }
