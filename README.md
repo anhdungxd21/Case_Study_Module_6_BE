@@ -8,21 +8,46 @@
     "data": [
         {
             "id": 1,
-            "name": "Dương",
+            "name": "song name",
             "link": "link",
-            "lyric": "unknown",
-            "userId": 1,
-            "typeId": 1,
-            "singerId": 1
+            "lyric": "lyric",
+            "user": {
+                "id": "id",
+                "username": "full user name"
+            },
+            "typeId": {
+                "id": "id",
+                "type": "type music"
+            },
+            "singer": {
+                "id": "singerid",
+                "fullName": "full name singer",
+                "gender": "gender",
+                "birthday": "birthday",
+                "description":"description"
+            }
+    
         },
         {
             "id": 2,
             "name": "Tú",
             "link": "link",
             "lyric": "unknown",
-            "userId": 1,
-            "typeId": 1,
-            "singerId": 1
+            "user": {
+                "id": "id",
+                "username": "full user name"
+            },
+            "typeId": {
+                "id": "id",
+                "type": "type music"
+            },
+            "singer": {
+                "id": "singerid",
+                "fullName": "full name singer",
+                "gender": "gender",
+                "birthday": "birthday",
+                "description":"description"
+            }
         }]
     }
 
