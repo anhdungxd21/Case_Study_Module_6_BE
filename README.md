@@ -26,7 +26,6 @@
                 "birthday": "birthday",
                 "description":"description"
             }
-    
         },
         {
             "id": 2,
