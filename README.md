@@ -92,6 +92,8 @@
 
 #### Getting all songs
 ```GET http://localhost:8080/songs```
+#### Getting all sóng contain by name
+```GET GET http://localhost:8080/songs?search=name```
 #### POST a songs
 ```POST http://localhost:8080/songs```
 #### Getting by id
