@@ -106,9 +106,9 @@
 # Playlist API
 #### Playlist model
     {
-      private Long id;
-      private String name;
-      private String link;
+      "id"   : "Playlist id";
+      "name" : "Playlist name";
+      "description" : "description of description ";
       private String lyric;
       private Long userId;
       private Long typeId;
