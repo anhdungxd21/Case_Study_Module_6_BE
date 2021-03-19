@@ -48,13 +48,13 @@ public class PlaylistImp implements IPlaylistService {
 
     // find all by name page
     @Override
-    public Page<Playlist> findAllByName(String name, Pageable pageable) {
-        return repositoryPlaylist.findAllByNameContains(name,pageable);
+    public Page<Playlist> findAllByNameAndUserID(String name, Long id, Pageable pageable) {
+        return repositoryPlaylist.findAllByNameContainsAndUserId(name, id, pageable);
     }
 
     // find all by userId
     @Override
     public Page<Playlist>  findAllByUserId(Long id,Pageable pageable){
-        return repositoryPlaylist.findAllByUserIdContains(id, pageable);
+        return repositoryPlaylist.findAllByUserId(id, pageable);
     }
 }
