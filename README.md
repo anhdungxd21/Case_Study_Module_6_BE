@@ -245,7 +245,7 @@
     "numberOfElements": 6,
     "empty": false
     }
-    cc
+    
 #### Get search playlists(pageabel) music 
 
 ### getUserAuthor after login
