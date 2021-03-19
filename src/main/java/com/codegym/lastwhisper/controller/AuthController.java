@@ -50,7 +50,14 @@ public class AuthController {
 
         String jwt = jwtService.generateAccessToken(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
         return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+    }
+
+    @GetMapping("/user/{username}")
+    public User getUser(@PathVariable String username){
+        User user = userService.findByUsername(username);
+        return user;
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, value = "/register")
@@ -71,6 +78,8 @@ public class AuthController {
         user.setRoles(roles2);
         return userService.save(user);
     }
+
+
 
 
 

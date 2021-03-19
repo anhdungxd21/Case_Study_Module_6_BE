@@ -48,4 +48,9 @@ public class UserService implements IUserService {
     public User findByFullName(String username) {
         return userRepository.findByFullName(username);
     }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByFullName(username);
+    }
 }
