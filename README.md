@@ -40,6 +40,25 @@
         "singerId": 1
     }
     }
+    
+#### Song model Getting by id
+     {
+    "id": 1,
+    "name": "Song name",
+    "link": "link firebase",
+    "lyric": "lyric",
+    "user": {
+        "id": "id:number,
+        "username": "full name"
+    },
+    "singer": {
+        "id": "singerid",
+        "fullName": "full name singer",
+        "gender": "gender",
+        "birthday": "birthday",
+        "description":"description"
+    }
+    }
 
 #### Getting all songs
 ```GET http://localhost:8080/songs```
