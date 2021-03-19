@@ -28,8 +28,8 @@ public class PlaylistController {
     // list playlist
     @GetMapping
     public ResponseEntity<Iterable<PlaylistDTO>> getAllPlaylist(@RequestParam("page") Optional<String> optionalPage,
-                                                             @RequestParam("size") Optional<String> optionalSize,
-                                                             @RequestParam("sort") Optional<String> optionalSort) {
+                                                                @RequestParam("size") Optional<String> optionalSize,
+                                                                @RequestParam("sort") Optional<String> optionalSort) {
         Integer page = 0;
         Integer size = 2;
         String  sort = "name";
@@ -80,7 +80,7 @@ public class PlaylistController {
     }
 
     // sreach by name
-    @GetMapping("/search/{id}")
+    @GetMapping(value = {"/search/{id}","/search"})
     public ResponseEntity<Iterable<PlaylistDTO>> getAllPlaylistByName(@RequestParam("name") Optional<String> nameSearch,
                                                                    @PathVariable("id") Long userID,
                                                                    @RequestParam("page") Optional<String> optionalPage,

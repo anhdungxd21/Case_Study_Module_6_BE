@@ -1,15 +1,20 @@
 package com.codegym.lastwhisper.dto;
 
+import com.codegym.lastwhisper.model.Singer;
 import com.codegym.lastwhisper.model.Song;
+import com.codegym.lastwhisper.model.User;
+import com.codegym.lastwhisper.model.Type;
 import com.codegym.lastwhisper.service.ISongService;
+import com.codegym.lastwhisper.service.singer.ISingerService;
+import com.codegym.lastwhisper.service.type.ITypeService;
+import com.codegym.lastwhisper.service.user.IUserService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 
 @Data
@@ -18,6 +23,16 @@ public class ConverterDTO {
 
     @Autowired
     private ISongService songService;
+
+    @Autowired
+    private IUserService userService;
+
+    @Autowired
+    private ISingerService singerService;
+
+    @Autowired
+    private ITypeService typeService;
+
 
     public ZonedDateTime getTime(){
         ZoneId zoneHCM = ZoneId.of("Asia/Ho_Chi_Minh");
@@ -81,5 +96,42 @@ public class ConverterDTO {
         }
 
         return song;
+    }
+
+    public SongJsonDto converterSongToSend(Song song){
+        SongJsonDto songJsonDto = new SongJsonDto();
+        songJsonDto.setId(song.getId());
+        songJsonDto.setName(song.getName());
+        songJsonDto.setLink(song.getLink());
+        songJsonDto.setLyric(song.getLyric());
+
+        Optional<Type> type = typeService.findById(song.getTypeId());
+        if(type.isPresent()){
+            songJsonDto.setType(type.get());
+        }else {
+            songJsonDto.setType(null);
+        }
+
+        songJsonDto.setUser(getUserDtoById(song.getUserId()));
+
+        Optional<Singer> singer = singerService.findById(song.getSingerId());
+        if(singer.isPresent()) {
+            songJsonDto.setSinger(singer.get());
+        }else{
+            songJsonDto.setSinger(null);
+        }
+        return songJsonDto;
+    }
+
+    public UserDTO getUserDtoById(Long id){
+        Optional<User> optionalUser = userService.findById(id);
+        if (optionalUser.isPresent()){
+            UserDTO userDTO = new UserDTO();
+            userDTO.setId(id);
+            userDTO.setUsername(optionalUser.get().getUsername());
+            return userDTO;
+        }else {
+            return null;
+        }
     }
 }
