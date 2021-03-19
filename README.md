@@ -105,6 +105,149 @@
 # Playlist API
 
 #### Playlist model
+      {
+      private Long id;
+      private String name;
+      private String link;
+      private String lyric;
+      private Long userId;
+      private Long typeId;
+      private Long singerId;
+      }
+#### PlaylistDTO model
+    {
+    private Long id;
+    private String name;
+    private String description;
+    private String avatar;
+    private String userFullName;
+    }  
+
+### Get all playlists(pageabel) music for customer
+```Get:  http://localhost:8080/playlists```
+
+    {
+    "content": [
+        {
+            "id": 2,
+            "name": "Do Ai",
+            "description": "Ai",
+            "avatar": "avatar2",
+            "userFullName": "Luong Anh Tu"
+        },
+        {
+            "id": 3,
+            "name": "Do Ai do",
+            "description": "Vi Sao",
+            "avatar": "avatar3",
+            "userFullName": "aaaaaaaa"
+        }
+    ],
+    "pageable": {
+        "sort": {
+            "sorted": true,
+            "unsorted": false,
+            "empty": false
+        },
+        "offset": 0,
+        "pageSize": 2,
+        "pageNumber": 0,
+        "unpaged": false,
+        "paged": true
+    },
+    "last": true,
+    "totalElements": 2,
+    "totalPages": 1,
+    "size": 2,
+    "number": 0,
+    "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+    },
+    "first": true,
+    "numberOfElements": 2,
+    "empty": false
+    }
+    }
+
+#### Get all playlists(pageabel) music for user
+```Get:  http://localhost:8080/playlists/user/{id}```
+
+    {
+    "content": [
+        {
+            "id": 3,
+            "name": "Do Ai do",
+            "description": "Vi Sao",
+            "avatar": "avatar3",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 4,
+            "name": "Do Do do",
+            "description": "Vi quen",
+            "avatar": "avatar4",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 7,
+            "name": "Quen ai",
+            "description": "Ai do ai",
+            "avatar": "avatar7",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 6,
+            "name": "va ai",
+            "description": "Phong Bao",
+            "avatar": "avatar6",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 1,
+            "name": "Vi Ai",
+            "description": "Loi Bai hat",
+            "avatar": "avatar1",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 5,
+            "name": "Xong",
+            "description": "Quen",
+            "avatar": "avatar5",
+            "userFullName": "aaaaaaaa"
+        }
+    ],
+    "pageable": {
+        "sort": {
+            "sorted": true,
+            "unsorted": false,
+            "empty": false
+        },
+        "offset": 0,
+        "pageSize": 10,
+        "pageNumber": 0,
+        "unpaged": false,
+        "paged": true
+    },
+    "last": true,
+    "totalElements": 6,
+    "totalPages": 1,
+    "size": 10,
+    "number": 0,
+    "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+    },
+    "first": true,
+    "numberOfElements": 6,
+    "empty": false
+    }
+    cc
+# Playlist API
+#### Playlist model
     {
       private Long id;
       private String name;
@@ -122,7 +265,6 @@
     private String avatar;
     private String userFullName;
    }  
-
 ### Get all playlists(pageabel) music for customer
 ```Get:  http://localhost:8080/playlists``
     {
@@ -169,7 +311,6 @@
     "empty": false
     }
 }
-
 #### Get all playlists(pageabel) music for user
 ```Get:  http://localhost:8080/playlists/user/{id}``
 {
@@ -245,7 +386,6 @@
 }
 #### Get search playlists(pageabel) music
 ```http://localhost:8080/playlists/search/${id}?page=${page}&size=${size}&sort=${sort}&name=${name}```
-
 {
     "content": [
         {
@@ -319,6 +459,5 @@
 }
 
 
-
 ### getUserAuthor after login
---- GET: http://localhost:8080/user/username
+``` GET: http://localhost:8080/user/username```
