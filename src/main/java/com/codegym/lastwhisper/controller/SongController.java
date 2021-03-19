@@ -2,6 +2,7 @@ package com.codegym.lastwhisper.controller;
 
 import com.codegym.lastwhisper.dto.ConverterDTO;
 import com.codegym.lastwhisper.dto.SongDTO;
+import com.codegym.lastwhisper.dto.SongJsonDto;
 import com.codegym.lastwhisper.model.Response;
 import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.service.ISongService;
@@ -25,12 +26,13 @@ public class SongController {
     private ConverterDTO converter;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Song> getSongById(@PathVariable("id")Long id){
+    public ResponseEntity getSongById(@PathVariable("id")Long id){
         Optional<Song> optionalSong =  songService.findById(id);
         if(optionalSong.isPresent()){
-            return new ResponseEntity<Song>(optionalSong.get(), HttpStatus.OK);
+            SongJsonDto songJsonDto = converter.converterSongToSend(optionalSong.get());
+            return new ResponseEntity(songJsonDto, HttpStatus.OK);
         }else {
-            return new ResponseEntity<Song>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
