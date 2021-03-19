@@ -119,3 +119,5 @@
 ### Get all playlists music for customer and user
 ```Get:  http://localhost:8080/playlists```
 
+### getUserAuthor after login
+--- GET: http://localhost:8080/user/username
