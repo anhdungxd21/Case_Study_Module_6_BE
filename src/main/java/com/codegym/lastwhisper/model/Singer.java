@@ -16,8 +16,8 @@ import javax.persistence.GenerationType;
 public class Singer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
+    private Long   id;
+    private String fullName;
     private String gender;
     private String birthday;
     private String description;

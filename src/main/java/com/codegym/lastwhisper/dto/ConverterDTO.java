@@ -2,14 +2,17 @@ package com.codegym.lastwhisper.dto;
 
 import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.service.ISongService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+import lombok.Data;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
+@Data
 @Component
 public class ConverterDTO {
 
@@ -46,6 +49,7 @@ public class ConverterDTO {
         song.setUpdateDate(date);
 
         if(songDTO.getName()!=null){
+
             song.setName(songDTO.getName());
         }else {
             song.setName("Unknown");
