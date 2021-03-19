@@ -31,7 +31,7 @@
             "id": 2,
             "name": "Tú",
             "link": "link",
-            "lyric": "unknown",
+            "lyric": "lyric",
             "user": {
                 "id": "id",
                 "username": "full user name"
@@ -54,7 +54,7 @@
     {
         "name": "song Name",
         "link": "link",
-        "lyric": "unknown",
+        "lyric": "lyric",
         "userId": "use id",
         "typeId": "type id",
         "singerId": "singer id"
