@@ -52,17 +52,12 @@
 
 #### Song model POST
     {
-    "status": 201,
-    "message": "Create success",
-    "data": {
-        "id": 4,
-        "name": "Dũng",
+        "name": "song Name",
         "link": "link",
         "lyric": "unknown",
-        "userId": 1,
-        "typeId": 1,
-        "singerId": 1
-    }
+        "userId": "use id",
+        "typeId": "type id",
+        "singerId": "singer id"
     }
     
 #### Song model Getting by id
@@ -83,6 +78,17 @@
         "description":"description"
     }
     }
+    
+#### Update song by id
+    {
+        "id": "id",
+        "name": "song Name",
+        "link": "link",
+        "lyric": "unknown",
+        "userId": "use id",
+        "typeId": "type id",
+        "singerId": "singer id"
+    }
 
 #### Getting all songs
 ```GET http://localhost:8080/songs```
@@ -90,7 +96,10 @@
 ```POST http://localhost:8080/songs```
 #### Getting by id
 ```GET http://localhost:8080/songs/1```
-
+#### Putting: update song by id
+```PUT http://localhost:8080/songs/1```
+#### DELETE: delete song by id
+```DELETE http://localhost:8080/songs/1```
 
 
 # Playlist API
