@@ -64,6 +64,8 @@
 ```GET http://localhost:8080/songs```
 #### POST a songs
 ```POST http://localhost:8080/songs```
+#### Getting by id
+```GET http://localhost:8080/songs/1```
 
 
 
