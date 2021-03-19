@@ -5,14 +5,12 @@ import com.codegym.lastwhisper.dto.SongDTO;
 import com.codegym.lastwhisper.dto.SongJsonDto;
 import com.codegym.lastwhisper.model.Response;
 import com.codegym.lastwhisper.model.Song;
-import com.codegym.lastwhisper.service.ISongService;
+import com.codegym.lastwhisper.service.song.ISongService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,22 +29,39 @@ public class SongController {
 
 
     @GetMapping
-    public Response getAllSong(){
+    public Response getAllSong(@RequestParam(value = "search", required = false) Optional<String> search){
         Response response = new Response();
-        List getAllSong = (List) songService.findAll();
-        Stack reverseSong = new Stack();
-        ArrayList<SongJsonDto> sendList = new ArrayList();
-        for(int i = 0; i < (getAllSong.size()<10?getAllSong.size():10); i++){
-            reverseSong.push(getAllSong.get(i));
+        if(search.isPresent()){
+            List getAllSong = songService.findAllByNameContains(search.get());
+            Stack reverseSong = new Stack();
+            ArrayList<SongJsonDto> sendList = new ArrayList();
+            for(int i = 0; i < (getAllSong.size()<10?getAllSong.size():10); i++){
+                reverseSong.push(getAllSong.get(i));
+            }
+            for (int i = 0; i < reverseSong.size(); i++){
+                Song song = (Song) reverseSong.pop();
+                sendList.add(converter.converterSongToSend(song));
+            }
+            response.setStatus(200);
+            response.setMessage("Success");
+            response.setData(sendList);
+            return response;
+        } else {
+            List getAllSong = (List) songService.findAll();
+            Stack reverseSong = new Stack();
+            ArrayList<SongJsonDto> sendList = new ArrayList();
+            for(int i = 0; i < (getAllSong.size()<10?getAllSong.size():10); i++){
+                reverseSong.push(getAllSong.get(i));
+            }
+            for (int i = 0; i < reverseSong.size(); i++){
+                Song song = (Song) reverseSong.pop();
+                sendList.add(converter.converterSongToSend(song));
+            }
+            response.setStatus(200);
+            response.setMessage("Success");
+            response.setData(sendList);
+            return response;
         }
-        for (int i = 0; i < reverseSong.size(); i++){
-            Song song = (Song) reverseSong.pop();
-            sendList.add(converter.converterSongToSend(song));
-        }
-        response.setStatus(200);
-        response.setMessage("Success");
-        response.setData(sendList);
-        return response;
     }
 
     @GetMapping("/{id}")
