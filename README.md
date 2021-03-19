@@ -124,7 +124,7 @@
     }  
 
 ### Get all playlists(pageabel) music for customer
-```Get:  http://localhost:8080/playlists```
+Get:  http://localhost:8080/playlists
 
     {
     "content": [
