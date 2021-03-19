@@ -4,7 +4,7 @@ import com.codegym.lastwhisper.dto.ConverterDTO;
 import com.codegym.lastwhisper.dto.SongDTO;
 import com.codegym.lastwhisper.model.Response;
 import com.codegym.lastwhisper.model.Song;
-import com.codegym.lastwhisper.service.ISongService;
+import com.codegym.lastwhisper.service.song.ISongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;

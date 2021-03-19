@@ -4,8 +4,9 @@ import com.codegym.lastwhisper.model.Singer;
 import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.model.User;
 import com.codegym.lastwhisper.model.Type;
-import com.codegym.lastwhisper.service.ISongService;
+
 import com.codegym.lastwhisper.service.singer.ISingerService;
+import com.codegym.lastwhisper.service.song.ISongService;
 import com.codegym.lastwhisper.service.type.ITypeService;
 import com.codegym.lastwhisper.service.user.IUserService;
 import lombok.Data;
