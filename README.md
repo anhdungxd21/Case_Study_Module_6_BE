@@ -105,7 +105,7 @@
 # Playlist API
 
 #### Playlist model
-      {
+    {
       private Long id;
       private String name;
       private String link;
@@ -113,19 +113,18 @@
       private Long userId;
       private Long typeId;
       private Long singerId;
-      }
+    }
 #### PlaylistDTO model
-    {
-    private Long id;
+   {
+     private Long id;
     private String name;
     private String description;
     private String avatar;
     private String userFullName;
-    }  
+   }  
 
 ### Get all playlists(pageabel) music for customer
-```Get:  http://localhost:8080/playlists```
-
+```Get:  http://localhost:8080/playlists``
     {
     "content": [
         {
@@ -169,12 +168,11 @@
     "numberOfElements": 2,
     "empty": false
     }
-    }
+}
 
 #### Get all playlists(pageabel) music for user
-```Get:  http://localhost:8080/playlists/user/{id}```
-
-    {
+```Get:  http://localhost:8080/playlists/user/{id}``
+{
     "content": [
         {
             "id": 3,
@@ -244,9 +242,83 @@
     "first": true,
     "numberOfElements": 6,
     "empty": false
-    }
-    
-#### Get search playlists(pageabel) music 
+}
+#### Get search playlists(pageabel) music
+```http://localhost:8080/playlists/search/${id}?page=${page}&size=${size}&sort=${sort}&name=${name}```
+
+{
+    "content": [
+        {
+            "id": 3,
+            "name": "Do Ai do",
+            "description": "Vi Sao",
+            "avatar": "avatar3",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 4,
+            "name": "Do Do do",
+            "description": "Vi quen",
+            "avatar": "avatar4",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 7,
+            "name": "Quen ai",
+            "description": "Ai do ai",
+            "avatar": "avatar7",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 6,
+            "name": "va ai",
+            "description": "Phong Bao",
+            "avatar": "avatar6",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 1,
+            "name": "Vi Ai",
+            "description": "Loi Bai hat",
+            "avatar": "avatar1",
+            "userFullName": "aaaaaaaa"
+        },
+        {
+            "id": 5,
+            "name": "Xong",
+            "description": "Quen",
+            "avatar": "avatar5",
+            "userFullName": "aaaaaaaa"
+        }
+    ],
+    "pageable": {
+        "sort": {
+            "sorted": true,
+            "unsorted": false,
+            "empty": false
+        },
+        "pageNumber": 0,
+        "pageSize": 10,
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+    },
+    "last": true,
+    "totalElements": 6,
+    "totalPages": 1,
+    "first": true,
+    "numberOfElements": 6,
+    "size": 10,
+    "number": 0,
+    "sort": {
+        "sorted": true,
+        "unsorted": false,
+        "empty": false
+    },
+    "empty": false
+}
+
+
 
 ### getUserAuthor after login
-``` GET: http://localhost:8080/user/username```
+--- GET: http://localhost:8080/user/username
