@@ -25,7 +25,7 @@ public class PlaylistController {
     @Autowired
     private TuConverterDTO tuConverterDTO;
 
-    // list playlist
+    // take playlist for customers
     @GetMapping
     public ResponseEntity<Iterable<PlaylistDTO>> getAllPlaylist(@RequestParam("page") Optional<String> optionalPage,
                                                                 @RequestParam("size") Optional<String> optionalSize,
@@ -38,15 +38,16 @@ public class PlaylistController {
         if (optionalSort.isPresent()) sort = optionalSort.get();
         Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
         Page<Playlist> playlists = playlistService.findAll(pageable);
+        if (playlists.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         return new ResponseEntity<>(playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
     }
+
 
     // create playlist
     @PostMapping
     public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
         return new ResponseEntity<>(playlistService.save(playlist), HttpStatus.CREATED);
     }
-
     // edit playlist
     @PutMapping("/{id}")
     public ResponseEntity<Playlist> updatePlaylist(@RequestBody Playlist playlist, @PathVariable Long id) {
@@ -57,8 +58,7 @@ public class PlaylistController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-    // delete playlist
+    // delete playlist(them truong),
     @DeleteMapping("/{id}")
     public ResponseEntity<Playlist> deletePlaylist(@PathVariable Long id) {
         Optional<Playlist> playlist = playlistService.findById(id);
@@ -68,8 +68,7 @@ public class PlaylistController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-    // find one by id for show detail
+    // find one by id for show detail one 1 playlist
     @GetMapping("/{id}")
     public ResponseEntity<Playlist> playlistDetail(@PathVariable Long id) {
         Optional<Playlist> playlist = playlistService.findById(id);
@@ -78,8 +77,7 @@ public class PlaylistController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-    // sreach by name
+    // search by name
     @GetMapping(value = {"/search/{id}","/search"})
     public ResponseEntity<Iterable<PlaylistDTO>> getAllPlaylistByName(@RequestParam("name") Optional<String> nameSearch,
                                                                    @PathVariable("id") Long userID,
@@ -96,6 +94,7 @@ public class PlaylistController {
         if (nameSearch.isPresent()) name = nameSearch.get();
         Pageable pageable =PageRequest.of(page, size,Sort.by(sort));
         Page<Playlist> playlists = playlistService.findAllByNameAndUserID(name, userID, pageable);
+        ///check null
         return new ResponseEntity<>(playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
     }
 
