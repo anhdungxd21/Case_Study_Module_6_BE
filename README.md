@@ -258,15 +258,16 @@ Get:  http://localhost:8080/playlists
       private Long singerId;
     }
 #### PlaylistDTO model
-   {
-     private Long id;
+    {
+    private Long id;
     private String name;
     private String description;
     private String avatar;
     private String userFullName;
-   }  
+    }  
 ### Get all playlists(pageabel) music for customer
-```Get:  http://localhost:8080/playlists``
+```Get:  http://localhost:8080/playlists```
+
     {
     "content": [
         {
@@ -310,10 +311,11 @@ Get:  http://localhost:8080/playlists
     "numberOfElements": 2,
     "empty": false
     }
-}
+    }
 #### Get all playlists(pageabel) music for user
-```Get:  http://localhost:8080/playlists/user/{id}``
-{
+```Get:  http://localhost:8080/playlists/user/{id}```
+
+    {
     "content": [
         {
             "id": 3,
@@ -383,10 +385,11 @@ Get:  http://localhost:8080/playlists
     "first": true,
     "numberOfElements": 6,
     "empty": false
-}
+    }
 #### Get search playlists(pageabel) music
 ```http://localhost:8080/playlists/search/${id}?page=${page}&size=${size}&sort=${sort}&name=${name}```
-{
+
+    {
     "content": [
         {
             "id": 3,
@@ -456,7 +459,7 @@ Get:  http://localhost:8080/playlists
         "empty": false
     },
     "empty": false
-}
+    }
 
 
 ### getUserAuthor after login
