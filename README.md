@@ -125,6 +125,7 @@
 
 ### Get all playlists(pageabel) music for customer
 ```Get:  http://localhost:8080/playlists```
+
     {
     "content": [
         {
@@ -172,6 +173,7 @@
 
 #### Get all playlists(pageabel) music for user
 ```Get:  http://localhost:8080/playlists/user/{id}```
+
     {
     "content": [
         {
@@ -246,4 +248,4 @@
 #### Get search playlists(pageabel) music 
 
 ### getUserAuthor after login
---- GET: http://localhost:8080/user/username
+``` GET: http://localhost:8080/user/username```
