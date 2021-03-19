@@ -105,7 +105,7 @@
 # Playlist API
 
 #### Playlist model
-    {
+      {
       private Long id;
       private String name;
       private String link;
@@ -113,18 +113,18 @@
       private Long userId;
       private Long typeId;
       private Long singerId;
-    }
+      }
 #### PlaylistDTO model
-   {
-     private Long id;
+    {
+    private Long id;
     private String name;
     private String description;
     private String avatar;
     private String userFullName;
-   }  
+    }  
 
 ### Get all playlists(pageabel) music for customer
-```Get:  http://localhost:8080/playlists``
+```Get:  http://localhost:8080/playlists```
     {
     "content": [
         {
@@ -168,11 +168,11 @@
     "numberOfElements": 2,
     "empty": false
     }
-}
+    }
 
 #### Get all playlists(pageabel) music for user
-```Get:  http://localhost:8080/playlists/user/{id}``
-{
+```Get:  http://localhost:8080/playlists/user/{id}```
+    {
     "content": [
         {
             "id": 3,
@@ -242,7 +242,7 @@
     "first": true,
     "numberOfElements": 6,
     "empty": false
-}
+    }
 #### Get search playlists(pageabel) music 
 
 ### getUserAuthor after login
