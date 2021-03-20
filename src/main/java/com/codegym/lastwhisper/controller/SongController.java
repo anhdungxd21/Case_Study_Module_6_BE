@@ -6,6 +6,7 @@ import com.codegym.lastwhisper.dto.SongJsonDto;
 import com.codegym.lastwhisper.model.Response;
 import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.service.song.ISongService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.Stack;
 @RestController
 @RequestMapping("songs")
 @CrossOrigin("*")
+@Slf4j
 public class SongController {
     @Autowired
     private ISongService songService;
@@ -27,9 +29,9 @@ public class SongController {
     private ConverterDTO converter;
 
 
-
     @GetMapping
     public Response getAllSong(@RequestParam(value = "search", required = false) Optional<String> search){
+        log.info("GET all song");
         Response response = new Response();
         if(search.isPresent()){
             List getAllSong = songService.findAllByNameContains(search.get());

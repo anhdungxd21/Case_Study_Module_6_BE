@@ -15,5 +15,5 @@ public interface SongRepository extends PagingAndSortingRepository<Song, Long> {
     Iterable<Song> findAllByStatus(boolean status);
     List<Song> findAllByNameContains(String name);
     List<Song> findAllByStatusAndNameContains(boolean status,String name);
-    Optional<Song> findAllByUserIdAndStatus(Long id, boolean status);
+    Optional<Song> findByStatusAndId(boolean status, Long id);
 }

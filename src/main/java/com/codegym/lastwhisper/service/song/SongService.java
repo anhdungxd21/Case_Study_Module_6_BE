@@ -31,7 +31,7 @@ public class SongService implements ISongService {
     @Transactional
     @Override
     public Optional<Song> findById(Long id) {
-        return songRepository.findById(id);
+        return songRepository.findByStatusAndId(true, id);
     }
 
     @Transactional
