@@ -41,45 +41,12 @@ public class PlaylistController {
         return new ResponseEntity<>(tuConverterDTO.playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
     }
 
-
-    // create playlist
-    @PostMapping
-    public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
-        Playlist playlistCreate =  playlistService.save(playlist);
-        if (playlistCreate.toString().isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        return new ResponseEntity<>(playlistService.save(playlist), HttpStatus.CREATED);
-    }
-
-
-    // edit playlist
-    @PutMapping("/{id}")
-    public ResponseEntity<Playlist> updatePlaylist(@RequestBody Playlist playlist, @PathVariable Long id) {
-        Optional<Playlist> playlistOptional = playlistService.findById(id);
-        if (playlistOptional.isPresent()) {
-            playlist.setId(id);
-            return new ResponseEntity<>(playlistService.save(playlist), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    // delete playlist(them truong),
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Playlist> deletePlaylist(@PathVariable Long id) {
-        Optional<Playlist> playlist = playlistService.findById(id);
-        if (playlist.isPresent()) {
-            playlistService.remove(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-
     // find one by id for show detail one 1 playlist
     @GetMapping("/{id}")
-    public ResponseEntity<Playlist> playlistDetail(@PathVariable Long id) {
+    public ResponseEntity<PlaylistDTO> playlistDetail(@PathVariable Long id) {
         Optional<Playlist> playlist = playlistService.findById(id);
         if (playlist.isPresent()) {
-            return new ResponseEntity<>(playlist.get(), HttpStatus.OK);
+            return new ResponseEntity<>(tuConverterDTO.playlistDTOConvert(playlist.get()), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -135,5 +102,38 @@ public class PlaylistController {
         return new ResponseEntity<>(tuConverterDTO.playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
     }
 
+
+
+    // create playlist
+    @PostMapping
+    public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
+        Playlist playlistCreate =  playlistService.save(playlist);
+        if (playlistCreate.toString().isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(playlistService.save(playlist), HttpStatus.CREATED);
+    }
+
+
+    // edit playlist
+    @PutMapping("/{id}")
+    public ResponseEntity<Playlist> updatePlaylist(@RequestBody PlaylistDTO playlistDTO, @PathVariable Long id) {
+        Playlist playlist = tuConverterDTO.playlistConvert(playlistDTO);
+        Optional<Playlist> playlistOptional = playlistService.findById(id);
+        if (playlistOptional.isPresent()) {
+            playlist.setId(id);
+            return new ResponseEntity<>(playlistService.save(playlist), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    // delete playlist(them truong),
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Playlist> deletePlaylist(@PathVariable Long id) {
+        Optional<Playlist> playlist = playlistService.findById(id);
+        if (playlist.isPresent()) {
+            playlist.get().setStatus(false);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
 }

@@ -1,6 +1,8 @@
 package com.codegym.lastwhisper.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 
@@ -26,6 +28,9 @@ public abstract class BaseEntity {
     @CreatedBy
     private ZonedDateTime updateDate;
 
-//    @JsonIgnore
-//    private String version;
+
+    @JsonIgnore
+    @CreatedBy
+    private boolean status = true;
+
 }
