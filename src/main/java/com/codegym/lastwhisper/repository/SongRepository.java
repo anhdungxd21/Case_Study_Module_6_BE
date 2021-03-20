@@ -12,6 +12,8 @@ import java.util.Optional;
 @Repository
 public interface SongRepository extends PagingAndSortingRepository<Song, Long> {
     Page<Song> findAll(Pageable pageable);
+    Iterable<Song> findAllByStatus(boolean status);
     List<Song> findAllByNameContains(String name);
-    Optional<Song> findAllByUserId(Long id);
+    List<Song> findAllByStatusAndNameContains(boolean status,String name);
+    Optional<Song> findAllByUserIdAndStatus(Long id, boolean status);
 }

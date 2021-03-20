@@ -3,6 +3,7 @@ package com.codegym.lastwhisper.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Columns;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -33,4 +34,7 @@ public class Song extends BaseEntity{
 
     @NotNull
     private Long singerId;
+
+    @Column(columnDefinition = "boolean default true")
+    private Boolean status;
 }
