@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 @CrossOrigin("*")
 @RestController
@@ -37,7 +38,7 @@ public class PlaylistController {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
         Page<Playlist> playlists = playlistService.findAll(pageable);
         if (playlists.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        return new ResponseEntity<>(playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
+        return new ResponseEntity<>(tuConverterDTO.playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
     }
 
 
@@ -60,6 +61,7 @@ public class PlaylistController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
     // delete playlist(them truong),
     @DeleteMapping("/{id}")
     public ResponseEntity<Playlist> deletePlaylist(@PathVariable Long id) {
@@ -81,29 +83,40 @@ public class PlaylistController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
     // search by name
     @GetMapping(value = {"/search/{id}","/search"})
     public ResponseEntity<Iterable<PlaylistDTO>> getAllPlaylistByName(@RequestParam("name") Optional<String> nameSearch,
-                                                                   @PathVariable("id") Long userID,
-                                                                   @RequestParam("page") Optional<String> optionalPage,
-                                                                   @RequestParam("size") Optional<String> optionalSize,
-                                                                   @RequestParam("sort") Optional<String> optionalSort) {
+                                                                      @PathVariable Map<String, String> userID,
+                                                                      @RequestParam("page") Optional<String> optionalPage,
+                                                                      @RequestParam("size") Optional<String> optionalSize,
+                                                                      @RequestParam("sort") Optional<String> optionalSort) {
         Integer page = 0;
         Integer size = 10;
         String sort = "name";
         String name = "";
+        String idUser = userID.get("id");
+        Page<Playlist> playlists;
         if (optionalPage.isPresent()) page = Integer.parseInt(optionalPage.get());
         if (optionalSize.isPresent()) size = Integer.parseInt(optionalSize.get());
         if (optionalSort.isPresent()) sort = optionalSort.get();
         if (nameSearch.isPresent()) name = nameSearch.get();
+
         Pageable pageable =PageRequest.of(page, size,Sort.by(sort));
-        Page<Playlist> playlists = playlistService.findAllByNameAndUserID(name, userID, pageable);
+        if (idUser!=null){
+            playlists = playlistService.findAllByNameAndUserID(name,Long.parseLong(idUser), pageable);
+        }
+        else
+            playlists = playlistService.findAllByName( name, pageable);
+//        playlists = playlistService.findAllByName( name, pageable);
         if (playlists.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
         ///check null
-        return new ResponseEntity<>(playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
+        return new ResponseEntity<>(tuConverterDTO.playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
     }
 
-    // playlist by playlist
+
+    // playlist of user
     @GetMapping("/user/{id}")
     public ResponseEntity<Iterable<PlaylistDTO>> getAllPlaylistByUser(@PathVariable("id") Long id,
                                                                       @RequestParam("page") Optional<String> optionalPage,
@@ -119,15 +132,8 @@ public class PlaylistController {
         Page<Playlist> playlists = playlistService.findAllByUserId(id, pageable);
         if (playlists.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         // do du lieu tu user ra
-        return new ResponseEntity<>(playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
+        return new ResponseEntity<>(tuConverterDTO.playlistConvertPlaylistDTO(playlists,pageable), HttpStatus.OK);
     }
 
-    private Page<PlaylistDTO> playlistConvertPlaylistDTO(Page<Playlist> playlists, Pageable pageable){
-        List<PlaylistDTO> playlistDTOS= new ArrayList<PlaylistDTO>();
-        for (Playlist playlist: playlists.getContent()) {
-            playlistDTOS.add(tuConverterDTO.playlistDTOConvert(playlist));
-        }
-        Page<PlaylistDTO> playlistDTOPage = new PageImpl( playlistDTOS, pageable, playlists.getTotalElements());
-        return playlistDTOPage;
-    }
+
 }

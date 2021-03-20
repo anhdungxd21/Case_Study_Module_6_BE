@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface RepositoryPlaylist extends JpaRepository<Playlist, Long> {
     Page<Playlist> findAllByNameContainsAndUserId(String name,Long id, Pageable pageable);
     Page<Playlist> findAllByUserId(Long id, Pageable pageable);
+    Page<Playlist> findAllByNameContains(String name,Pageable pageable);
 }

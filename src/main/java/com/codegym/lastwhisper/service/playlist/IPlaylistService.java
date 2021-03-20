@@ -9,4 +9,5 @@ public interface IPlaylistService extends GeneralService<Playlist> {
     public Page<Playlist> findAll(Pageable pageable);
     public Page<Playlist> findAllByNameAndUserID(String name, Long id, Pageable pageable);
     public Page<Playlist> findAllByUserId(Long id, Pageable pageable);
+    public Page<Playlist> findAllByName(String name, Pageable pageable);
 }
