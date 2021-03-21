@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
 public class PlaylistSong extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

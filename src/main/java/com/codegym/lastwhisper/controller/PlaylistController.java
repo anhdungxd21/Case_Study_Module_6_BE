@@ -51,7 +51,7 @@ public class PlaylistController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // search by name
+    // search by name playlist
     @GetMapping(value = {"/search/{id}","/search"})
     public ResponseEntity<Iterable<PlaylistDTO>> getAllPlaylistByName(@RequestParam("name") Optional<String> nameSearch,
                                                                       @PathVariable Map<String, String> userID,
@@ -107,8 +107,7 @@ public class PlaylistController {
     // create playlist
     @PostMapping
     public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
-        Playlist playlistCreate =  playlistService.save(playlist);
-        if (playlistCreate.toString().isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        playlist.setStatus(true);
         return new ResponseEntity<>(playlistService.save(playlist), HttpStatus.CREATED);
     }
 

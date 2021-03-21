@@ -1,8 +1,12 @@
 package com.codegym.lastwhisper.dto;
 
 import com.codegym.lastwhisper.model.Playlist;
+import com.codegym.lastwhisper.model.PlaylistSong;
+import com.codegym.lastwhisper.model.Song;
 import com.codegym.lastwhisper.model.User;
 import com.codegym.lastwhisper.service.playlist.IPlaylistService;
+import com.codegym.lastwhisper.service.playlist.IPlaylistSong;
+import com.codegym.lastwhisper.service.song.ISongService;
 import com.codegym.lastwhisper.service.user.IUserService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +18,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 @Data
 @Component
@@ -22,6 +27,10 @@ public class TuConverterDTO {
     private IPlaylistService playlistService;
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IPlaylistSong playlistSongService;
+    @Autowired
+    private ISongService songService;
 
     public Playlist playlistConvert(PlaylistDTO playlistDTO){
         Playlist playlist = new Playlist(playlistDTO.getId(), playlistDTO.getName(), playlistDTO.getDescription(),
@@ -35,7 +44,6 @@ public class TuConverterDTO {
                                                    userDTO);
         return playlistDTO;
     }
-
     public Page<PlaylistDTO> playlistConvertPlaylistDTO(Page<Playlist> playlists, Pageable pageable){
         List<PlaylistDTO> playlistDTOS= new ArrayList<PlaylistDTO>();
         for (Playlist playlist: playlists.getContent()) {
@@ -54,5 +62,20 @@ public class TuConverterDTO {
         }else {
             return null;
         }
+    }
+
+    /// list song in playlist
+    public PlaylistSongDTO playlistSongDTOConvert(PlaylistSong playlistSong){
+        PlaylistSongDTO playlistSongDTO = new PlaylistSongDTO();
+        Optional<Playlist> playlist = playlistService.findById(playlistSong.getPlaylistId());
+        Optional<Song> song = songService.findById(playlistSong.getSongId());
+        if (!playlist.isPresent() && !song.isPresent() ) return null;
+        playlistSongDTO.setId(playlistSong.getId());
+        playlistSongDTO.setPlaylist(playlist.get());
+        playlistSongDTO.setSong(song.get());
+        return playlistSongDTO;
+    }
+    public PlaylistSong playlistSongConvert(PlaylistSongDTO playlistSongDTO){
+        return new PlaylistSong(playlistSongDTO.getId(), playlistSongDTO.getPlaylist().getId(),playlistSongDTO.getSong().getId());
     }
 }

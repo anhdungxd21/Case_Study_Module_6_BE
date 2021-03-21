@@ -20,11 +20,9 @@ public class Playlist extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @NotEmpty
     private String name;
     private String description;
     private String avatar;
-    @NotEmpty
     private Long userId;
 }
