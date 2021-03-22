@@ -17,7 +17,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +28,8 @@ import java.util.Set;
 @CrossOrigin("*")
 @RestController
 public class AuthController {
+
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -78,6 +82,9 @@ public class AuthController {
         user.setRoles(roles2);
         return userService.save(user);
     }
+
+
+
 
 
 
