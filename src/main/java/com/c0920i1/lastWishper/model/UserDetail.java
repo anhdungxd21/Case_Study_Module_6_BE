@@ -12,8 +12,11 @@ public class UserDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(nullable = false, length = 50)
     private String address;
+    @Column(nullable = false, unique = true, length = 50)
     private String email;
+    @Column(nullable = false, unique = true, length = 50)
     private String tel;
     private String avatar;
     @OneToOne

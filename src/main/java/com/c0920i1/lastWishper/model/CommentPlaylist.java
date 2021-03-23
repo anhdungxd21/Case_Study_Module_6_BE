@@ -3,6 +3,7 @@ package com.c0920i1.lastWishper.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 @Data
@@ -16,4 +17,6 @@ public class CommentPlaylist {
     private User user;
     @ManyToOne
     private Playlist playlist;
+
+
 }
