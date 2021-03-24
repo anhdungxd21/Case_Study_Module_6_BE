@@ -33,4 +33,5 @@ public class Song {
     private User user;
     @ManyToMany(mappedBy = "songs")
     private List<Singer> singers;
+
 }

@@ -11,7 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -156,7 +159,7 @@ public class PlayListController {
     @GetMapping("/searchPlaylist/{keyword}")
     public ResponseEntity<Iterable<Playlist>> searchByName(@PathVariable String keyword){
         Iterable<Playlist> playlists = playListService.findByName(keyword);
-        if (playlists.toString() == null){
+        if (playlists == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(playlists, HttpStatus.OK);

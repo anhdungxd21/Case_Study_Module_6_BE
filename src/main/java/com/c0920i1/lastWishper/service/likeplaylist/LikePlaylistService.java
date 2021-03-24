@@ -5,12 +5,10 @@ import com.c0920i1.lastWishper.model.LikePlaylistId;
 import com.c0920i1.lastWishper.repository.LikePlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
-@Transactional
 public class LikePlaylistService implements ILikePlaylistService{
     @Autowired
     private LikePlaylistRepository likePlaylistRepository;
