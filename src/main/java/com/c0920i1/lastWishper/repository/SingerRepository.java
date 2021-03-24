@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface SingerRepository extends JpaRepository<Singer, Long> {
     public Iterable<Singer> findAllByNameContains(String name);
+    public Optional<Singer> findByName(String name);
 }

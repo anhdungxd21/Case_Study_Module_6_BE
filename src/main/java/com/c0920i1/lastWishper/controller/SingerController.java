@@ -71,4 +71,12 @@ public class SingerController {
             return new ResponseEntity<>(singerIterable,HttpStatus.OK);
         }
     }
+    @ApiOperation(value = "find by name singer" , response = Singer.class)
+    @GetMapping("/editSinger/{keyword}")
+    public ResponseEntity<Singer> searchByName(@PathVariable Optional<String> keyword){
+        Optional<Singer> singerOptional = singerService.findByName(keyword.get());
+        return singerOptional.map(singer -> {
+            return new ResponseEntity<>(singer, HttpStatus.OK);
+        }).orElseGet(()-> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 }

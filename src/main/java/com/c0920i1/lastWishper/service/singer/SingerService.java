@@ -38,4 +38,10 @@ public class SingerService implements ISingerService {
         return singerRepository.findAllByNameContains(name);
     }
 
+    @Override
+    public Optional<Singer> findByName(String name) {
+        return singerRepository.findByName(name);
+    }
+
+
 }
