@@ -13,8 +13,11 @@ public class Singer {
     private Long id;
     @Column(nullable = false)
     private String name;
+    @Column (nullable = false)
+    private String avatar;
     @Column(nullable = false)
     private String description;
+
     @ManyToMany
     @JoinTable
     private List<Song> songs;
