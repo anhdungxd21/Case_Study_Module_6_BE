@@ -110,6 +110,7 @@ public class SongController {
         songService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @GetMapping("top10views")
     public ResponseEntity<Iterable<Song>>getList10SongInTopView(){
         Iterable<Song> songs=songService.getList10SongInTopView();
