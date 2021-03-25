@@ -1,9 +1,14 @@
 package com.c0920i1.lastWishper.controller;
 
+import com.c0920i1.lastWishper.model.Playlist;
 import com.c0920i1.lastWishper.model.Singer;
 import com.c0920i1.lastWishper.service.singer.ISingerService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +26,24 @@ public class SingerController {
     ISingerService singerService;
 
     @GetMapping
-    public ResponseEntity<Iterable<Singer>> getAll(){
-        Iterable<Singer> singerIterable = singerService.findAll();
-        return new ResponseEntity<>(singerService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Iterable<Singer>> getAllPlaylist(@RequestParam("page") Optional<String> optionalPage,
+                                                                @RequestParam("size") Optional<String> optionalSize,
+                                                                @RequestParam("sort") Optional<String> optionalSort) {
+        Integer page = 0;
+        Integer size = 5;
+        String  sort = "name";
+        if (optionalPage.isPresent()) page = Integer.parseInt(optionalPage.get());
+        if (optionalSize.isPresent()) size = Integer.parseInt(optionalSize.get());
+        if (optionalSort.isPresent()) sort = optionalSort.get();
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+        Page<Singer> singers = singerService.findAll(pageable);
+        if (singers.isEmpty()) return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(singers, HttpStatus.OK);
     }
+//    public ResponseEntity<Iterable<Singer>> getAll(){
+//        Iterable<Singer> singerIterable = singerService.findAll();
+//        return new ResponseEntity<>(singerService.findAll(), HttpStatus.OK);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Singer> getSingerById(@PathVariable Long id){

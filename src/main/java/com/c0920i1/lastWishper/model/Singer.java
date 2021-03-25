@@ -17,7 +17,6 @@ public class Singer {
     private String avatar;
     @Column(nullable = false)
     private String description;
-
     @ManyToMany
     @JoinTable
     private List<Song> songs;
