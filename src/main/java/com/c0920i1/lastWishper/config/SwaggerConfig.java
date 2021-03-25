@@ -17,7 +17,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.c0720i2.melody"))
+                .apis(RequestHandlerSelectors.basePackage("com.c0920i1.lastWishper"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metadata());

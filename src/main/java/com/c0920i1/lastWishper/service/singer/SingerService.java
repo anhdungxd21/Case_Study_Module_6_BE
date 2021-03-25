@@ -32,4 +32,16 @@ public class SingerService implements ISingerService {
     public Singer save(Singer singer) {
         return singerRepository.save(singer);
     }
+
+    @Override
+    public Iterable<Singer> findAllByNameContains(String name) {
+        return singerRepository.findAllByNameContains(name);
+    }
+
+    @Override
+    public Optional<Singer> findByName(String name) {
+        return singerRepository.findByName(name);
+    }
+
+
 }

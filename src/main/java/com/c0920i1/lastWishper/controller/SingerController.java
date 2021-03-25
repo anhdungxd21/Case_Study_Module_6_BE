@@ -2,11 +2,15 @@ package com.c0920i1.lastWishper.controller;
 
 import com.c0920i1.lastWishper.model.Singer;
 import com.c0920i1.lastWishper.service.singer.ISingerService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @CrossOrigin("*")
@@ -16,8 +20,9 @@ public class SingerController {
     @Autowired
     ISingerService singerService;
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<Iterable<Singer>> getAll(){
+        Iterable<Singer> singerIterable = singerService.findAll();
         return new ResponseEntity<>(singerService.findAll(), HttpStatus.OK);
     }
 
@@ -29,7 +34,7 @@ public class SingerController {
     }
 
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<Singer> createNewSinger(@RequestBody Singer singer){
         return new ResponseEntity<>(singerService.save(singer), HttpStatus.CREATED);
     }
@@ -53,5 +58,25 @@ public class SingerController {
             singerService.remove(id);
             return new ResponseEntity<Singer>(HttpStatus.NO_CONTENT);
         }).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+    @ApiOperation(value = "find by name singer" , response = Singer.class)
+    @GetMapping("/searchSinger/{keyword}")
+    public ResponseEntity<Iterable<Singer>> searchByNameContains(@PathVariable Optional<String> keyword){
+        Iterable<Singer> singerIterable = singerService.findAllByNameContains(keyword.get());
+        List<Singer> singerList = new ArrayList<>();
+        singerIterable.forEach(singerList::add);
+        if (singerList.size() == 0){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            return new ResponseEntity<>(singerIterable,HttpStatus.OK);
+        }
+    }
+    @ApiOperation(value = "find by name singer" , response = Singer.class)
+    @GetMapping("/editSinger/{keyword}")
+    public ResponseEntity<Singer> searchByName(@PathVariable Optional<String> keyword){
+        Optional<Singer> singerOptional = singerService.findByName(keyword.get());
+        return singerOptional.map(singer -> {
+            return new ResponseEntity<>(singer, HttpStatus.OK);
+        }).orElseGet(()-> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }
