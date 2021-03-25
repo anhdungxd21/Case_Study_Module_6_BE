@@ -101,7 +101,7 @@ public class SongController {
     }
 
     @ApiOperation(value = "delete song created by user", response = Song.class)
-    @RequestMapping(value = "listsong/{username}/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "listsong/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteSong(@PathVariable("id") Long id){
         Song song = songService.findById(id);
         if (song == null){
